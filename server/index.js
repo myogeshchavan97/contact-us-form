@@ -10,7 +10,6 @@ app.use(express.json());
 app.use(express.static(buildPath));
 
 app.post('/send', (req, res) => {
-  try {
     const mailOptions = {
       from: req.body.email, // sender address
       to: process.env.email, // list of receivers
@@ -40,12 +39,6 @@ app.post('/send', (req, res) => {
         });
       }
     });
-  } catch (error) {
-    res.status(500).send({
-      success: false,
-      message: 'Something went wrong. Try again later'
-    });
-  }
 });
 
 app.listen(3030, () => {
